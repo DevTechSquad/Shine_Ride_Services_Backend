@@ -1,12 +1,9 @@
-const fastify = require('fastify')();
-require('dotenv').config();
-const swagger = require('@fastify/swagger');
-
-
+const fastify = require("fastify")();
+require("dotenv").config();
+const swagger = require("@fastify/swagger");
 
 //Files imported
-const { connect } = require('./config/dbConfig');
-
+const { connect } = require("./config/dbConfig");
 
 // fastify.register(swagger, {
 //     routePrefix: '/documentation',
@@ -27,32 +24,27 @@ const { connect } = require('./config/dbConfig');
 //     },
 //     exposeRoute: true,
 //   });
-  
 
 fastify.register(async (fastify, options) => {
-    await connect();
-  });
-
+  await connect();
+});
 
 // To register the routes
-fastify.register(require('./src/routes/userRoute'))
+fastify.register(require("./src/routes/userRoute"));
 
-
-
-fastify.get('/', async (request, reply) => {
-  return { message: 'Hello, world!' };
+fastify.get("/", async (request, reply) => {
+  return { message: "Hello, world!" };
 });
 
 const start = async () => {
-    try {
-      const port = process.env.PORT || 8080;
-      await fastify.listen(port);
-      console.log(`Server started on port ${port}`);
-    } catch (err) {
-      console.error('Error starting server:', err);
-      process.exit(1);
-    }
-  };
-  
+  try {
+    const port = process.env.PORT || 8080;
+    await fastify.listen(port);
+    console.log(`Server started on port ${port}`);
+  } catch (err) {
+    console.error("Error starting server:", err);
+    process.exit(1);
+  }
+};
 
 start();
