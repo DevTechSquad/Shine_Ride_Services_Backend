@@ -36,6 +36,10 @@ fastify.get("/", async (request, reply) => {
   return { message: "Hello, world!" };
 });
 
+fastify.get("/", async (request, reply) => {
+  return { message: "Hello, world soma" };
+});
+
 const start = async () => {
   try {
     const port = process.env.PORT || 8080;
